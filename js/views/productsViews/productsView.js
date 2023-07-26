@@ -58,8 +58,12 @@ const displayTypes = function (productCategories) {
   const typesHTML = Object.keys(productCategories)
     .map(
       (type) => `
-    <input type="radio" name="type-food" id="${type}" />
-    <label for="${type}">${globalFunctions.capitalizeFirstLetter(type)}</label>
+    <li>
+      <input type="radio" name="type-food" id="${type}" class="custom-input" />
+      <label for="${type}">${globalFunctions.capitalizeFirstLetter(
+        type
+      )}</label>
+    </li>
   `
     )
     .join("");
@@ -74,10 +78,10 @@ const displayTypes = function (productCategories) {
         </div>
       </div>
         <div class="checkbox-wrapper">
-          <p>Type</p>
-          <div class="side-menu-types">
+          <p class="side-titles">Type</p>
+          <ul class="side-menu-types">
             ${typesHTML}
-          </div>
+          </ul>
         </div>
       </section>
         <section class="main-content">

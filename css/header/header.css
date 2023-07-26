@@ -6,6 +6,7 @@
   background: #19202a;
   grid-template-columns: 1fr 3fr 1fr;
   font-size: 1.125rem;
+  color: #fff;
 }
 
 .header-ul ul {

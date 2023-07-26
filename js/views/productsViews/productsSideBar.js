@@ -16,7 +16,7 @@ mainSection.addEventListener("click", function (e) {
     handleTypeFoodClick(clicked);
   }
 
-  if (clicked.className === "sub-category-items") {
+  if (clicked.classList[0] === "sub-category-items") {
     handleSubCategoryClick();
   }
 
@@ -58,12 +58,12 @@ function displaySubCategoryCheckboxes(parentEl) {
   )
     .map(
       (subCategory) => `
-    <div>
-      <input type="checkbox" name="${subCategory}" id="${subCategory}" class="sub-category-items" />
+    <li>
+      <input type="checkbox" name="${subCategory}" id="${subCategory}" class="sub-category-items custom-input" />
       <label for="${subCategory}">${globalFunctions.capitalizeFirstLetter(
         subCategory
       )}</label>
-    </div>
+    </li>
   `
     )
     .join("");
@@ -74,10 +74,10 @@ function displaySubCategoryCheckboxes(parentEl) {
     "afterend",
     `
     <div class="checkbox-wrapper2">
-      <p>Sub Category</p>
-      <div>
+      <p class="side-titles">Sub Category</p>
+      <ul>
         ${subCategoryHTML}
-      </div>
+      </ul>
     </div>
   `
   );

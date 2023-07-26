@@ -3,11 +3,22 @@
 }
 
 .side-menu > div {
-  margin-bottom: 20px;
+  margin-top: 15px;
+
+  /* border: 2px solid blue; */
+  padding-bottom: 15px;
+  border-bottom: 1px solid #37393a;
 }
 
-.side-menu > div > div {
+.side-menu > div > ul {
   margin-left: 10px;
+  margin-top: 9px;
+}
+.side-menu > div > ul > li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
 }
 
 .search-side-menu {
@@ -16,14 +27,27 @@
   width: 100%;
   border-radius: 2px;
   border: 2px solid #19202a;
+  color: #fff;
+  font-weight: 500;
+  font-size: 17px;
 }
-
 .search-side-menu:focus {
   outline: none;
   border: 2px solid #119ddb;
-  /* background-color: #119ddb; */
+}
+.side-menu li {
+  color: #888c8f;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
-.checkbox-wrapper div input {
-  color: red;
+.side-titles {
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  color: #fcfdfd;
+}
+
+.custom-input {
+  width: 16px;
+  height: 16px;
 }
