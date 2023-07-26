@@ -1,0 +1,29 @@
+.side-menu {
+  padding: 12px;
+}
+
+.side-menu > div {
+  margin-bottom: 20px;
+}
+
+.side-menu > div > div {
+  margin-left: 10px;
+}
+
+.search-side-menu {
+  padding: 10px;
+  background-color: #19202a;
+  width: 100%;
+  border-radius: 2px;
+  border: 2px solid #19202a;
+}
+
+.search-side-menu:focus {
+  outline: none;
+  border: 2px solid #119ddb;
+  /* background-color: #119ddb; */
+}
+
+.checkbox-wrapper div input {
+  color: red;
+}

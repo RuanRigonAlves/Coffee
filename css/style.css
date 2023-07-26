@@ -1,0 +1,5 @@
+@import "./reset.css";
+@import "./header/header.css";
+@import "./category-section/category.css";
+@import "./main-section/main.css";
+@import "./main-section/side-menu.css";

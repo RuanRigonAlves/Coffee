@@ -1,0 +1,18 @@
+.main-section {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  height: 90vh;
+}
+
+.side-menu {
+  background: #10151b;
+}
+
+.main-content {
+  color: black;
+  background: #ececec;
+}
+
+.main-content-info {
+  /* height: 50px; */
+}
