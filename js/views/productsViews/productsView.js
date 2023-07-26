@@ -79,10 +79,6 @@ const displayTypes = function (productCategories) {
             ${typesHTML}
           </div>
         </div>
-      <div>
-          <p>Price Range</p>
-          <input type="range" name="" id="" />
-      </div>
       </section>
         <section class="main-content">
       </section> 

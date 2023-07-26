@@ -10,27 +10,20 @@ let currentSubCategoryWrapper = null; // Keep track of the current subcategory s
 
 mainSection.addEventListener("click", function (e) {
   const clicked = e.target;
-  const mainContent = document.querySelector(".main-content");
+  const searchBar = document.querySelector(".search-side-menu");
 
   if (clicked.name === "type-food") {
     handleTypeFoodClick(clicked);
   }
 
   if (clicked.className === "sub-category-items") {
-    const subCatItems = document.querySelectorAll(".sub-category-items");
+    handleSubCategoryClick();
+  }
 
-    globalFunctions.clearHTML(mainContent);
-
-    const selectedSubCategory = checkedItems(subCatItems);
-
-    if (!selectedSubCategory.length) {
-      const currentType = Object.values(
-        model.myCoffeeData.Coffee.productsSubCategories
-      ).flat();
-      productView.displayProducts(currentType);
-    } else {
-      productView.displayProducts(selectedSubCategory);
-    }
+  if (searchBar) {
+    searchBar.addEventListener("input", function () {
+      searchedItemTyped(searchBar.value);
+    });
   }
 });
 
@@ -101,7 +94,7 @@ function updateCurrentSubCategoryWrapper() {
 }
 
 function checkedItems(nodeListItems) {
-  const selectedProducts = [];
+  const selectedSubCategoryProducts = [];
 
   nodeListItems.forEach((item) => {
     if (item.checked) {
@@ -110,8 +103,56 @@ function checkedItems(nodeListItems) {
 
       const flattenedProducts = subCategoryProducts.flat();
 
-      selectedProducts.push(...flattenedProducts);
+      selectedSubCategoryProducts.push(...flattenedProducts);
     }
   });
-  return selectedProducts;
+  return selectedSubCategoryProducts;
+}
+
+function handleSubCategoryClick() {
+  const mainContent = document.querySelector(".main-content");
+  const subCatItems = document.querySelectorAll(".sub-category-items");
+  globalFunctions.clearHTML(mainContent);
+
+  const selectedSubCategory = checkedItems(subCatItems);
+
+  if (!selectedSubCategory.length) {
+    const currentType = Object.values(
+      model.myCoffeeData.Coffee.productsSubCategories
+    ).flat();
+    productView.displayProducts(currentType);
+  } else {
+    productView.displayProducts(selectedSubCategory);
+  }
+}
+
+function searchedItemTyped(query) {
+  const mainContent = document.querySelector(".main-content");
+  const productsArray = model.myCoffeeData.Coffee.products;
+  const matchingProducts = [];
+  const lowercaseQuery = query.toLowerCase();
+
+  productsArray.forEach((product) => {
+    const productString = JSON.stringify(product).toLowerCase();
+
+    if (productString.includes(lowercaseQuery)) {
+      matchingProducts.push(product);
+    }
+  });
+
+  if (matchingProducts.length) {
+    globalFunctions.clearHTML(mainContent);
+    productView.displayProducts(matchingProducts);
+  } else {
+    globalFunctions.clearHTML(mainContent);
+
+    mainContent.insertAdjacentHTML(
+      "beforeend",
+      `
+    <div>
+      <p>Sorry :( i couldnt found ${query}</p>
+    </div>
+    `
+    );
+  }
 }
