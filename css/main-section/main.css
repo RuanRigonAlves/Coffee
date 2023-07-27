@@ -1,7 +1,12 @@
 .main-section {
+  /* display: grid;
+  grid-template-columns: 1fr 4fr; */
+  height: 90vh;
+}
+
+.main-section-products {
   display: grid;
   grid-template-columns: 1fr 4fr;
-  height: 90vh;
 }
 
 .side-menu {

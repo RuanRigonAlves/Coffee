@@ -4,17 +4,11 @@ import * as globalFunctions from "../../globalFunctions.js";
 
 export default function initView() {}
 
-const headerProducts = document.querySelector(".header-products");
 const mainSection = document.querySelector(".main-section");
 
-headerProducts.addEventListener("click", function (e) {
-  globalFunctions.clearHTML(mainSection);
-
-  displayTypes(model.myCoffeeData.Coffee.productsCategories);
-  displayProducts(model.myCoffeeData.Coffee.products);
-});
-
 export const displayProducts = function (products) {
+  mainSection.classList = "main-section main-section-products";
+
   // console.log(products);
   const productsHTML = products
     .map(
@@ -54,7 +48,7 @@ export const displayProducts = function (products) {
   );
 };
 
-const displayTypes = function (productCategories) {
+export const displayTypes = function (productCategories) {
   const typesHTML = Object.keys(productCategories)
     .map(
       (type) => `
