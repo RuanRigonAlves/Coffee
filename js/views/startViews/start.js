@@ -6,7 +6,7 @@ export function displayStartPage(section) {
   section.insertAdjacentHTML(
     "afterbegin",
     `
-    <div class="start">
+    <div class="start animated-element-opacity">
     <h1>Lorem</h1>
     <p>
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime

@@ -28,7 +28,7 @@ mainSection.addEventListener("click", function (e) {
 });
 
 function handleTypeFoodClick(clicked) {
-  const parentEl = document.querySelector(".checkbox-wrapper");
+  const parentEl = document.querySelector(".subcategory-checkbox-wrapper");
   const mainContent = document.querySelector(".main-content");
 
   // Update sub-categories and display products
@@ -58,8 +58,8 @@ function displaySubCategoryCheckboxes(parentEl) {
   )
     .map(
       (subCategory) => `
-    <li>
-      <input type="checkbox" name="${subCategory}" id="${subCategory}" class="sub-category-items custom-input" />
+    <li class="animated-element-down">
+      <input type="checkbox" name="${subCategory}" id="${subCategory}" class="sub-category-items custom-input " />
       <label for="${subCategory}">${globalFunctions.capitalizeFirstLetter(
         subCategory
       )}</label>
@@ -71,26 +71,24 @@ function displaySubCategoryCheckboxes(parentEl) {
   removeCurrentSubCategoryWrapper();
 
   parentEl.insertAdjacentHTML(
-    "afterend",
+    "beforeend",
     `
-    <div class="checkbox-wrapper2">
-      <p class="side-titles">Sub Category</p>
-      <ul>
-        ${subCategoryHTML}
-      </ul>
-    </div>
-  `
+    <ul>
+    ${subCategoryHTML}
+    </ul>
+    `
   );
 }
 
 function removeCurrentSubCategoryWrapper() {
   if (currentSubCategoryWrapper) {
-    currentSubCategoryWrapper.remove();
+    currentSubCategoryWrapper[0].remove();
   }
 }
 
 function updateCurrentSubCategoryWrapper() {
-  currentSubCategoryWrapper = document.querySelector(".checkbox-wrapper2");
+  const ulElements = document.querySelector(".subcategory-checkbox-wrapper");
+  currentSubCategoryWrapper = ulElements.querySelectorAll("ul");
 }
 
 function checkedItems(nodeListItems) {

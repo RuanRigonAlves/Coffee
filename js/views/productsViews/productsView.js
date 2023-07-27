@@ -7,13 +7,14 @@ export default function initView() {}
 const mainSection = document.querySelector(".main-section");
 
 export const displayProducts = function (products) {
-  mainSection.classList = "main-section main-section-products";
+  mainSection.classList =
+    "main-section main-section-products animated-element-opacity";
 
   // console.log(products);
   const productsHTML = products
     .map(
       (product) => `
-      <li class='product-main'>
+      <li class='product-main animated-element-opacity'>
         <div class="image-holder">
           <img src="${product.image}" alt="">
         </div>
@@ -28,7 +29,7 @@ export const displayProducts = function (products) {
           </ul>
         </div>
       </li>
-              `
+      `
     )
     .join("");
 
@@ -77,6 +78,11 @@ export const displayTypes = function (productCategories) {
             ${typesHTML}
           </ul>
         </div>
+
+        <div class="subcategory-checkbox-wrapper">
+          <p class="side-titles">Sub Category</p>
+        </div>
+        
       </section>
         <section class="main-content">
       </section> 
