@@ -1,6 +1,7 @@
 import * as model from "../../model.js";
 import * as productView from "./productsView.js";
 import * as globalFunctions from "../../globalFunctions.js";
+import * as selection from "./selectionView.js";
 
 export default function productsSideBar() {}
 
@@ -8,22 +9,61 @@ const mainSection = document.querySelector(".main-section");
 
 let currentSubCategoryWrapper = null; // Keep track of the current subcategory section.
 
+if (mainSection) {
+  mainSection.addEventListener("click", function (e) {
+    const productMain = e.target.closest(".product-main");
+
+    if (productMain && productMain.classList.contains("product-main")) {
+      selection.selectedProduct(e);
+
+      e.stopPropagation();
+
+      // Check if the event listener is already added
+      function handleWindowClick(e) {
+        const productModal = e.target.closest(".product-modal");
+        const modal = document.querySelector(".product-modal");
+
+        if (productModal?.classList.contains("product-modal")) {
+          console.log(productModal.classList.contains("product-modal"));
+        } else {
+          modal.style.display = "";
+          modal.innerHTML = "";
+          console.log("closemodal");
+
+          // Remove the event listener
+          window.removeEventListener("click", handleWindowClick);
+        }
+      }
+      // Add the event listener to the window
+      window.addEventListener("click", handleWindowClick);
+    }
+  });
+}
+
 mainSection.addEventListener("click", function (e) {
-  const clicked = e.target;
-  const searchBar = document.querySelector(".search-side-menu");
+  const sideMenu = mainSection.querySelector(".side-menu") !== null;
 
-  if (clicked.name === "type-food") {
-    handleTypeFoodClick(clicked);
-  }
+  if (sideMenu) {
+    const mainContent = document.querySelector(".main-content");
 
-  if (clicked.classList[0] === "sub-category-items") {
-    handleSubCategoryClick();
-  }
+    const clicked = e.target;
+    const searchBar = document.querySelector(".search-side-menu");
 
-  if (searchBar) {
-    searchBar.addEventListener("input", function () {
-      searchedItemTyped(searchBar.value);
-    });
+    if (clicked.name === "type-food") {
+      handleTypeFoodClick(clicked);
+    }
+
+    if (clicked.classList[0] === "sub-category-items") {
+      handleSubCategoryClick();
+    }
+
+    if (searchBar) {
+      searchBar.addEventListener("input", function () {
+        searchedItemTyped(searchBar.value);
+      });
+    }
+    const productsContainer = document.querySelector(".category-name");
+    productsContainer.addEventListener("click", selection.selectedProduct);
   }
 });
 
@@ -153,4 +193,25 @@ function searchedItemTyped(query) {
     `
     );
   }
+}
+
+function handleWindowClick(e) {
+  const productModal = e.target.closest(".product-modal");
+
+  if (productModal?.classList.contains("product-modal")) {
+    console.log(productModal.classList.contains("product-modal"));
+  } else {
+    closeModal();
+  }
+}
+
+function closeModal() {
+  const modal = document.querySelector(".product-modal");
+  modal.style.display = "none";
+  modal.innerHTML = "";
+  console.log("closemodal");
+  isEventListenerAdded = false;
+
+  // Remove the event listener
+  window.removeEventListener("click", handleWindowClick);
 }

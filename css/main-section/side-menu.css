@@ -17,8 +17,17 @@
 .side-menu > div > ul > li {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 5px;
+  gap: 4px;
+  position: relative;
+}
+
+.side-menu label {
+  padding: 5px;
+}
+
+.side-menu label,
+.side-menu input {
+  cursor: pointer;
 }
 
 .search-side-menu {
@@ -80,4 +89,20 @@
 
 .animated-element-opacity {
   animation: opacity-animate 0.3s linear 0s 1;
+}
+
+.side-menu li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: transparent;
+  transition: width 0.4s, background-color 0.4s;
+}
+
+.side-menu li:hover::after {
+  width: 100%;
+  background-color: #119ddb;
 }

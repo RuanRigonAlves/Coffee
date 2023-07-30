@@ -22,7 +22,9 @@
 }
 
 .category-name {
-  background-color: #ececec;
+  /* background-color: #ececec; */
+  background-color: #c5c5c5;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;

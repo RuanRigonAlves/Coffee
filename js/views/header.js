@@ -4,6 +4,7 @@ import * as model from "../model.js";
 import * as globalFunctions from "../globalFunctions.js";
 import * as productView from "./productsViews/productsView.js";
 import * as startView from "./startViews/start.js";
+import * as selection from "./productsViews/selectionView.js";
 
 const mainSection = document.querySelector(".main-section");
 const headerSection = document.querySelector(".header-container");
@@ -20,7 +21,6 @@ headerSection.addEventListener("click", function (e) {
   if (e.target.classList[0] === "header-logo") {
     globalFunctions.clearHTML(mainSection);
 
-    console.log(e.target);
     startView.displayStartPage(mainSection);
   }
 

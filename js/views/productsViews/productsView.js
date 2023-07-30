@@ -10,11 +10,10 @@ export const displayProducts = function (products) {
   mainSection.classList =
     "main-section main-section-products animated-element-opacity";
 
-  // console.log(products);
   const productsHTML = products
     .map(
       (product) => `
-      <li class='product-main animated-element-opacity'>
+      <li class='product-main' id='product-id-${product.id}'>
         <div class="image-holder">
           <img src="${product.image}" alt="">
         </div>
@@ -38,13 +37,12 @@ export const displayProducts = function (products) {
   mainContent.insertAdjacentHTML(
     "beforeend",
     `
-    <section class="main-content">
       <div class="category-container">
-        <ul class="category-name">
+        <ul class="category-name animated-element-opacity">
           ${productsHTML}
         </ul>
       </div>
-    </section>
+      <div class="product-modal" style=""></div>
   `
   );
 };

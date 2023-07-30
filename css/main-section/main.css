@@ -6,7 +6,7 @@
 
 .main-section-products {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 170px auto;
 }
 
 .side-menu {
@@ -15,9 +15,25 @@
 
 .main-content {
   color: black;
-  background: #ececec;
+  /* background: #ececec; */
+  background-color: #c5c5c5;
+  position: relative;
 }
 
 .main-content-info {
   /* height: 50px; */
+}
+
+.product-modal {
+  display: none;
+  background-color: gray;
+  z-index: 20;
+  position: fixed;
+  /* position: absolute; */
+  height: 60%;
+  width: 60%;
+
+  top: 50%;
+  left: 59%;
+  transform: translate(-50%, -50%);
 }
