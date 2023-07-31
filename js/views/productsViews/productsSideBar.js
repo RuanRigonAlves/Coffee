@@ -1,73 +1,13 @@
 import * as model from "../../model.js";
 import * as productView from "./productsView.js";
-import * as globalFunctions from "../../globalFunctions.js";
+import * as globalFunctions from "../../helpers/globalFunctions.js";
 import * as selection from "./selectionView.js";
 
 export default function productsSideBar() {}
 
-const mainSection = document.querySelector(".main-section");
-
 let currentSubCategoryWrapper = null; // Keep track of the current subcategory section.
 
-if (mainSection) {
-  mainSection.addEventListener("click", function (e) {
-    const productMain = e.target.closest(".product-main");
-
-    if (productMain && productMain.classList.contains("product-main")) {
-      selection.selectedProduct(e);
-
-      e.stopPropagation();
-
-      // Check if the event listener is already added
-      function handleWindowClick(e) {
-        const productModal = e.target.closest(".product-modal");
-        const modal = document.querySelector(".product-modal");
-
-        if (productModal?.classList.contains("product-modal")) {
-          console.log(productModal.classList.contains("product-modal"));
-        } else {
-          modal.style.display = "";
-          modal.innerHTML = "";
-          console.log("closemodal");
-
-          // Remove the event listener
-          window.removeEventListener("click", handleWindowClick);
-        }
-      }
-      // Add the event listener to the window
-      window.addEventListener("click", handleWindowClick);
-    }
-  });
-}
-
-mainSection.addEventListener("click", function (e) {
-  const sideMenu = mainSection.querySelector(".side-menu") !== null;
-
-  if (sideMenu) {
-    const mainContent = document.querySelector(".main-content");
-
-    const clicked = e.target;
-    const searchBar = document.querySelector(".search-side-menu");
-
-    if (clicked.name === "type-food") {
-      handleTypeFoodClick(clicked);
-    }
-
-    if (clicked.classList[0] === "sub-category-items") {
-      handleSubCategoryClick();
-    }
-
-    if (searchBar) {
-      searchBar.addEventListener("input", function () {
-        searchedItemTyped(searchBar.value);
-      });
-    }
-    const productsContainer = document.querySelector(".category-name");
-    productsContainer.addEventListener("click", selection.selectedProduct);
-  }
-});
-
-function handleTypeFoodClick(clicked) {
+export function handleTypeFoodClick(clicked) {
   const parentEl = document.querySelector(".subcategory-checkbox-wrapper");
   const mainContent = document.querySelector(".main-content");
 
@@ -147,7 +87,7 @@ function checkedItems(nodeListItems) {
   return selectedSubCategoryProducts;
 }
 
-function handleSubCategoryClick() {
+export function handleSubCategoryClick() {
   const mainContent = document.querySelector(".main-content");
   const subCatItems = document.querySelectorAll(".sub-category-items");
   globalFunctions.clearHTML(mainContent);
@@ -164,7 +104,7 @@ function handleSubCategoryClick() {
   }
 }
 
-function searchedItemTyped(query) {
+export function searchedItemTyped(query) {
   const mainContent = document.querySelector(".main-content");
   const productsArray = model.myCoffeeData.Coffee.products;
   const matchingProducts = [];

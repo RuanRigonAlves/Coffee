@@ -1,6 +1,5 @@
 "use strict";
-import * as model from "../../model.js";
-import * as globalFunctions from "../../globalFunctions.js";
+import * as globalFunctions from "../../helpers/globalFunctions.js";
 
 export default function initView() {}
 
