@@ -46,7 +46,7 @@ export const displayProducts = function (products) {
   );
 };
 
-export const displayTypes = function (productCategories) {
+export const displayMenu = function (productCategories) {
   const typesHTML = Object.keys(productCategories)
     .map(
       (type) => `
@@ -70,7 +70,7 @@ export const displayTypes = function (productCategories) {
         </div>
       </div>
         <div class="checkbox-wrapper">
-          <p class="side-titles">Type</p>
+          <p class="side-titles">Menu</p>
           <ul class="side-menu-types">
             ${typesHTML}
           </ul>

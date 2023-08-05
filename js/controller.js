@@ -1,7 +1,5 @@
 import initModel from "./model.js";
-import initView from "./views/views.js";
 import initGlobalFunction from "./helpers/globalFunctions.js";
-
 import * as model from "./model.js";
 import * as globalFunctions from "./helpers/globalFunctions.js";
 import * as productView from "./views/productsViews/productsView.js";
@@ -30,43 +28,29 @@ function headerListener() {
     if (e.target.classList[0] === "header-products") {
       globalFunctions.clearHTML(mainSection);
 
-      productView.displayTypes(model.myCoffeeData.Coffee.productsCategories);
+      productView.displayMenu(model.myCoffeeData.Coffee.productsCategories);
       productView.displayProducts(model.myCoffeeData.Coffee.products);
     }
   });
 }
 
 function productListner() {
-  if (mainSection) {
-    mainSection.addEventListener("click", function (e) {
-      const productMain = e.target.closest(".product-main");
+  mainSection.addEventListener("click", function (e) {
+    const productMain = e.target.closest(".product-main");
 
-      if (productMain && productMain.classList.contains("product-main")) {
-        selection.selectedProduct(e);
+    if (productMain && productMain.classList.contains("product-main")) {
+      const modalContent = document.querySelector(".modal-content");
 
-        e.stopPropagation();
+      modalContent &&
+        selection.closeModal(modalContent, selection.checkWindowClick);
 
-        // Check if the event listener is already added
-        function handleWindowClick(e) {
-          const productModal = e.target.closest(".product-modal");
-          const modal = document.querySelector(".product-modal");
+      e.stopPropagation();
 
-          if (productModal?.classList.contains("product-modal")) {
-            console.log(productModal.classList.contains("product-modal"));
-          } else {
-            modal.style.display = "";
-            modal.innerHTML = "";
-            console.log("closemodal");
+      selection.selectedProduct(e);
 
-            // Remove the event listener
-            window.removeEventListener("click", handleWindowClick);
-          }
-        }
-        // Add the event listener to the window
-        window.addEventListener("click", handleWindowClick);
-      }
-    });
-  }
+      window.addEventListener("click", selection.checkWindowClick);
+    }
+  });
 }
 
 function sideMenuListner() {
@@ -85,11 +69,17 @@ function sideMenuListner() {
         sideBar.handleSubCategoryClick();
       }
 
+      let debounceTimer;
       if (searchBar) {
         searchBar.addEventListener("input", function () {
-          sideBar.searchedItemTyped(searchBar.value);
+          clearTimeout(debounceTimer);
+
+          debounceTimer = setTimeout(function () {
+            sideBar.searchedItemTyped(searchBar.value);
+          }, 300);
         });
       }
+
       const productsContainer = document.querySelector(".category-name");
       productsContainer.addEventListener("click", selection.selectedProduct);
     }
@@ -98,7 +88,6 @@ function sideMenuListner() {
 
 function init() {
   initModel();
-  initView();
   initGlobalFunction();
   headerListener();
   productListner();
