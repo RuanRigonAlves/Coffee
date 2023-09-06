@@ -8,6 +8,9 @@
     <script type="module" src="./js/script.js"></script>
   </head>
   <body>
+    <?php
+     include 'php/dbc.inc.php';
+     ?>
     <header class="header-container">
       <ul class="header-ul">
         <li>Logo</li>

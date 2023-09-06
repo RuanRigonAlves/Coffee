@@ -11,6 +11,7 @@ export async function fetchCoffeeData() {
     myCoffeeData["Coffee"] = jsonData;
 
     getCategories(jsonData.products);
+    console.log(myCoffeeData);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
