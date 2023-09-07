@@ -46,7 +46,7 @@ function updateSubCategoriesAndDisplayProducts(clicked, mainContent) {
   globalFunctions.clearHTML(mainContent);
 
   const combinedProducts = Object.values(
-    model.myCoffeeData.Coffee.productsSubCategories
+    model.myCoffee.Coffee.productsSubCategories
   ).flat();
 
   productView.displayProducts(combinedProducts);
@@ -54,7 +54,7 @@ function updateSubCategoriesAndDisplayProducts(clicked, mainContent) {
 
 function displaySubCategoryCheckboxes(parentEl) {
   const subCategoryHTML = Object.keys(
-    model.myCoffeeData.Coffee.productsSubCategories
+    model.myCoffee.Coffee.productsSubCategories
   )
     .map(
       (subCategory) => `
@@ -99,7 +99,7 @@ function checkedItems(nodeListItems) {
   nodeListItems.forEach((item) => {
     if (item.checked) {
       const subCategoryProducts =
-        model.myCoffeeData.Coffee.productsSubCategories[item.id];
+        model.myCoffee.Coffee.productsSubCategories[item.id];
 
       const flattenedProducts = subCategoryProducts.flat();
 
@@ -118,7 +118,7 @@ function handleSubCategoryClick() {
 
   if (!selectedSubCategory.length) {
     const currentType = Object.values(
-      model.myCoffeeData.Coffee.productsSubCategories
+      model.myCoffee.Coffee.productsSubCategories
     ).flat();
     productView.displayProducts(currentType);
   } else {
@@ -128,7 +128,7 @@ function handleSubCategoryClick() {
 
 function searchedItemTyped(query) {
   const mainContent = document.querySelector(".main-content");
-  const productsArray = model.myCoffeeData.Coffee.products;
+  const productsArray = model.myCoffee.Coffee.products;
   const matchingProducts = [];
   const lowercaseQuery = query.toLowerCase();
 

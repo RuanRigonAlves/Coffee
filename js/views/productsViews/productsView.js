@@ -10,12 +10,14 @@ const mainSection = document.querySelector(".main-section");
 headerProducts.addEventListener("click", function (e) {
   globalFunctions.clearHTML(mainSection);
 
-  displayTypes(model.myCoffeeData.Coffee.productsCategories);
-  displayProducts(model.myCoffeeData.Coffee.products);
+  displayTypes(model.myCoffee.Coffee.productsCategories);
+  displayProducts(model.myCoffee.Coffee.products);
+  // displayTypes(model.myCoffeeData.Coffee.productsCategories);
+  // displayProducts(model.myCoffeeData.Coffee.products);
 });
 
 export const displayProducts = function (products) {
-  // console.log(products);
+  console.log(products);
   const productsHTML = products
     .map(
       (product) => `
