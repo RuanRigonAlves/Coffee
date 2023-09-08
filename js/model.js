@@ -55,7 +55,7 @@ export const getSubCategoryByID = function (id) {
 
 export async function backend() {
   try {
-    const response = await fetch("./php/products/getProducts.inc.php");
+    const response = await fetch("./php/products/getProducts.php");
     const jsonData = await response.json();
 
     return (myCoffee["Coffee"] = jsonData);
