@@ -1,25 +1,18 @@
 "use strict";
-import * as model from "../../model.js";
-import * as globalFunctions from "../../globalFunctions.js";
+import * as globalFunctions from "../../helpers/globalFunctions.js";
 
 export default function initView() {}
 
-const headerProducts = document.querySelector(".header-products");
 const mainSection = document.querySelector(".main-section");
 
-headerProducts.addEventListener("click", function (e) {
-  globalFunctions.clearHTML(mainSection);
-
-  displayTypes(model.myCoffeeData.Coffee.productsCategories);
-  displayProducts(model.myCoffeeData.Coffee.products);
-});
-
 export const displayProducts = function (products) {
-  // console.log(products);
+  mainSection.classList =
+    "main-section main-section-products animated-element-opacity";
+
   const productsHTML = products
     .map(
       (product) => `
-      <li class='product-main'>
+      <li class='product-main' id='product-id-${product.id}'>
         <div class="image-holder">
           <img src="${product.image}" alt="">
         </div>
@@ -34,7 +27,7 @@ export const displayProducts = function (products) {
           </ul>
         </div>
       </li>
-              `
+      `
     )
     .join("");
 
@@ -43,23 +36,26 @@ export const displayProducts = function (products) {
   mainContent.insertAdjacentHTML(
     "beforeend",
     `
-    <section class="main-content">
       <div class="category-container">
-        <ul class="category-name">
+        <ul class="category-name animated-element-opacity">
           ${productsHTML}
         </ul>
       </div>
-    </section>
+      <div class="product-modal" style=""></div>
   `
   );
 };
 
-const displayTypes = function (productCategories) {
+export const displayMenu = function (productCategories) {
   const typesHTML = Object.keys(productCategories)
     .map(
       (type) => `
-    <input type="radio" name="type-food" id="${type}" />
-    <label for="${type}">${globalFunctions.capitalizeFirstLetter(type)}</label>
+    <li>
+      <input type="radio" name="type-food" id="${type}" class="custom-input" />
+      <label for="${type}">${globalFunctions.capitalizeFirstLetter(
+        type
+      )}</label>
+    </li>
   `
     )
     .join("");
@@ -74,11 +70,16 @@ const displayTypes = function (productCategories) {
         </div>
       </div>
         <div class="checkbox-wrapper">
-          <p>Type</p>
-          <div class="side-menu-types">
+          <p class="side-titles">Menu</p>
+          <ul class="side-menu-types">
             ${typesHTML}
-          </div>
+          </ul>
         </div>
+
+        <div class="subcategory-checkbox-wrapper">
+          <p class="side-titles">Sub Category</p>
+        </div>
+        
       </section>
         <section class="main-content">
       </section> 

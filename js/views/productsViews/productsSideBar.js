@@ -1,34 +1,14 @@
 import * as model from "../../model.js";
 import * as productView from "./productsView.js";
-import * as globalFunctions from "../../globalFunctions.js";
+import * as globalFunctions from "../../helpers/globalFunctions.js";
+import * as selection from "./selectionView.js";
 
 export default function productsSideBar() {}
 
-const mainSection = document.querySelector(".main-section");
-
 let currentSubCategoryWrapper = null; // Keep track of the current subcategory section.
 
-mainSection.addEventListener("click", function (e) {
-  const clicked = e.target;
-  const searchBar = document.querySelector(".search-side-menu");
-
-  if (clicked.name === "type-food") {
-    handleTypeFoodClick(clicked);
-  }
-
-  if (clicked.className === "sub-category-items") {
-    handleSubCategoryClick();
-  }
-
-  if (searchBar) {
-    searchBar.addEventListener("input", function () {
-      searchedItemTyped(searchBar.value);
-    });
-  }
-});
-
-function handleTypeFoodClick(clicked) {
-  const parentEl = document.querySelector(".checkbox-wrapper");
+export function handleTypeFoodClick(clicked) {
+  const parentEl = document.querySelector(".subcategory-checkbox-wrapper");
   const mainContent = document.querySelector(".main-content");
 
   // Update sub-categories and display products
@@ -58,12 +38,12 @@ function displaySubCategoryCheckboxes(parentEl) {
   )
     .map(
       (subCategory) => `
-    <div>
-      <input type="checkbox" name="${subCategory}" id="${subCategory}" class="sub-category-items" />
+    <li class="animated-element-down">
+      <input type="checkbox" name="${subCategory}" id="${subCategory}" class="sub-category-items custom-input " />
       <label for="${subCategory}">${globalFunctions.capitalizeFirstLetter(
         subCategory
       )}</label>
-    </div>
+    </li>
   `
     )
     .join("");
@@ -71,26 +51,24 @@ function displaySubCategoryCheckboxes(parentEl) {
   removeCurrentSubCategoryWrapper();
 
   parentEl.insertAdjacentHTML(
-    "afterend",
+    "beforeend",
     `
-    <div class="checkbox-wrapper2">
-      <p>Sub Category</p>
-      <div>
-        ${subCategoryHTML}
-      </div>
-    </div>
-  `
+    <ul>
+    ${subCategoryHTML}
+    </ul>
+    `
   );
 }
 
 function removeCurrentSubCategoryWrapper() {
   if (currentSubCategoryWrapper) {
-    currentSubCategoryWrapper.remove();
+    currentSubCategoryWrapper[0].remove();
   }
 }
 
 function updateCurrentSubCategoryWrapper() {
-  currentSubCategoryWrapper = document.querySelector(".checkbox-wrapper2");
+  const ulElements = document.querySelector(".subcategory-checkbox-wrapper");
+  currentSubCategoryWrapper = ulElements.querySelectorAll("ul");
 }
 
 function checkedItems(nodeListItems) {
@@ -109,7 +87,7 @@ function checkedItems(nodeListItems) {
   return selectedSubCategoryProducts;
 }
 
-function handleSubCategoryClick() {
+export function handleSubCategoryClick() {
   const mainContent = document.querySelector(".main-content");
   const subCatItems = document.querySelectorAll(".sub-category-items");
   globalFunctions.clearHTML(mainContent);
@@ -126,7 +104,7 @@ function handleSubCategoryClick() {
   }
 }
 
-function searchedItemTyped(query) {
+export function searchedItemTyped(query) {
   const mainContent = document.querySelector(".main-content");
   const productsArray = model.myCoffeeData.Coffee.products;
   const matchingProducts = [];
@@ -155,4 +133,25 @@ function searchedItemTyped(query) {
     `
     );
   }
+}
+
+function handleWindowClick(e) {
+  const productModal = e.target.closest(".product-modal");
+
+  if (productModal?.classList.contains("product-modal")) {
+    console.log(productModal.classList.contains("product-modal"));
+  } else {
+    closeModal();
+  }
+}
+
+function closeModal() {
+  const modal = document.querySelector(".product-modal");
+  modal.style.display = "none";
+  modal.innerHTML = "";
+  console.log("closemodal");
+  isEventListenerAdded = false;
+
+  // Remove the event listener
+  window.removeEventListener("click", handleWindowClick);
 }

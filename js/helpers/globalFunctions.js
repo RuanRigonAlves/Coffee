@@ -7,3 +7,9 @@ export function capitalizeFirstLetter(string) {
 export const clearHTML = function (elementHTML) {
   elementHTML.innerHTML = "";
 };
+
+export const extractNum = function (string) {
+  string = +string.match(/\d+/g).join("");
+
+  return string;
+};

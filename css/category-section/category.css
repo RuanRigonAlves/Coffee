@@ -22,10 +22,13 @@
 }
 
 .category-name {
-  background-color: #ececec;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 0;
+  /* background-color: #ececec; */
+  background-color: #c5c5c5;
+  /* background-image: linear-gradient(180deg, #0e678f, #e4a16d); */
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .product-main {
