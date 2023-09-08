@@ -28,8 +28,8 @@ function headerListener() {
     if (e.target.classList[0] === "header-products") {
       globalFunctions.clearHTML(mainSection);
 
-      productView.displayMenu(model.myCoffeeData.Coffee.productsCategories);
-      productView.displayProducts(model.myCoffeeData.Coffee.products);
+      productView.displayMenu(model.myCoffee.Coffee.productsCategories);
+      productView.displayProducts(model.myCoffee.Coffee.products);
     }
   });
 }

@@ -1,5 +1,5 @@
 <?php
-require '../dbc.inc.php';
+require_once 'php/includes/dbc.inc.php';
 
 $sql = "SELECT * FROM products";
 $result = $connect->query($sql);
