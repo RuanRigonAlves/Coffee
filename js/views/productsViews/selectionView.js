@@ -33,8 +33,8 @@ function extractClickedID(clicked) {
 }
 
 function getProduct(id) {
-  const productObject = model.myCoffeeData.Coffee.products.find(
-    (product) => product.id === id
+  const productObject = model.myCoffee.Coffee.products.find(
+    (product) => +product.id === id
   );
 
   if (productObject !== undefined) {

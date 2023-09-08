@@ -9,9 +9,6 @@
   </head>
   <body>
     <header class="header-container">
-      <?php 
-      require 'php/products/getProducts.php'
-      ?>
       <ul class="header-ul">
         <ul class="header-logo-ul">
           <li class="header-logo">Logo</li>
