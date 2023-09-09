@@ -18,11 +18,24 @@
           <li class="header-categories">Categories</li>
         </ul>
         <ul class="header-account-ul">
-          <li>Account</li>
+          <li class="header-account">Signup</li>
         </ul>
       </ul>
     </header>
 
-    <section class="main-section"></section>
+    <section class="main-section">
+      
+        <!-- <div class="form">
+          <form action="php/includes/signup.inc.php" method="post">
+            <h1 class="login-title">Signup</h1>
+            <input class="login-input" type="text" name="username" placeholder="Username">
+            <input class="login-input" type="email" name="email" placeholder="E-Mail">
+            <input class="login-input" type="password" name="password" placeholder="Password">
+            <input class="login-button"type="submit" name="submit" value="Register">
+            <p class="link"><a href="">Click to Login</a></p>
+          </form>
+        </div>
+         -->
+    </section>
   </body>
 </html>

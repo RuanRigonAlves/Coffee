@@ -6,6 +6,7 @@ import * as productView from "./views/productsViews/productsView.js";
 import * as startView from "./views/startViews/start.js";
 import * as selection from "./views/productsViews/selectionView.js";
 import * as sideBar from "./views/productsViews/productsSideBar.js";
+import * as accountView from "./views/accountViews/accountView.js";
 
 const mainSection = document.querySelector(".main-section");
 const headerSection = document.querySelector(".header-container");
@@ -30,6 +31,12 @@ function headerListener() {
 
       productView.displayMenu(model.myCoffee.Coffee.productsCategories);
       productView.displayProducts(model.myCoffee.Coffee.products);
+    }
+
+    if (e.target.classList[0] === "header-account") {
+      globalFunctions.clearHTML(mainSection);
+
+      accountView.displayLogin(mainSection);
     }
   });
 }
@@ -92,6 +99,7 @@ function init() {
   headerListener();
   productListner();
   sideMenuListner();
+  // accountView();
 }
 
 init();
