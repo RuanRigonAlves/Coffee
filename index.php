@@ -11,14 +11,21 @@
     <header class="header-container">
       <ul class="header-ul">
         <ul class="header-logo-ul">
-          <li class="header-logo">Logo</li>
+          <li class="header-logo">Start</li>
         </ul>
         <ul class="header-selection">
           <li class="header-products">Products</li>
           <li class="header-categories">Categories</li>
         </ul>
         <ul class="header-account-ul">
-          <li class="header-account">Signup</li>
+          <?php 
+              session_start();
+              if(isset($_SESSION["username"])){
+                echo '<li class="header-account">' . $_SESSION["username"] . '</li>';
+              }else{
+                echo '<li class="header-signup">Login</li>';
+              }
+              ?>
         </ul>
       </ul>
     </header>

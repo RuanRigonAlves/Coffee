@@ -6,6 +6,7 @@ import * as productView from "./views/productsViews/productsView.js";
 import * as startView from "./views/startViews/start.js";
 import * as selection from "./views/productsViews/selectionView.js";
 import * as sideBar from "./views/productsViews/productsSideBar.js";
+import * as signupView from "./views/accountViews/signupView.js";
 import * as accountView from "./views/accountViews/accountView.js";
 
 const mainSection = document.querySelector(".main-section");
@@ -15,6 +16,7 @@ function headerListener() {
   window.addEventListener(
     "DOMContentLoaded",
     startView.displayStartPage(mainSection)
+    // accountView.displayAccount(mainSection)
   );
 
   headerSection.addEventListener("click", function (e) {
@@ -33,10 +35,18 @@ function headerListener() {
       productView.displayProducts(model.myCoffee.Coffee.products);
     }
 
+    if (e.target.classList[0] === "header-signup") {
+      globalFunctions.clearHTML(mainSection);
+
+      signupView.displayLogin(mainSection);
+
+      signupView.validateLogin();
+    }
+
     if (e.target.classList[0] === "header-account") {
       globalFunctions.clearHTML(mainSection);
 
-      accountView.displayLogin(mainSection);
+      accountView.displayAccount(mainSection);
     }
   });
 }
@@ -99,7 +109,6 @@ function init() {
   headerListener();
   productListner();
   sideMenuListner();
-  // accountView();
 }
 
 init();
