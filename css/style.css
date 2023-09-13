@@ -5,3 +5,5 @@
 @import "./main-section/side-menu.css";
 @import "./main-section/start.css";
 @import "./login/login.css";
+@import "./account/account.css";
+@import "./cart/cart.css";

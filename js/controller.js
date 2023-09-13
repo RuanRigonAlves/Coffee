@@ -13,11 +13,11 @@ const mainSection = document.querySelector(".main-section");
 const headerSection = document.querySelector(".header-container");
 
 function headerListener() {
-  window.addEventListener(
-    "DOMContentLoaded",
-    startView.displayStartPage(mainSection)
-    // accountView.displayAccount(mainSection)
-  );
+  // window.addEventListener(
+  //   "DOMContentLoaded",
+  //   startView.displayStartPage(mainSection)
+  //   // accountView.displayAccount(mainSection)
+  // );
 
   headerSection.addEventListener("click", function (e) {
     if (e.target.nodeName !== "LI") return;
@@ -47,6 +47,10 @@ function headerListener() {
       globalFunctions.clearHTML(mainSection);
 
       accountView.displayAccount(mainSection);
+    }
+
+    if (e.target.classList[0] === "header-cart") {
+      globalFunctions.clearHTML(mainSection);
     }
   });
 }

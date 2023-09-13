@@ -44,32 +44,33 @@ function getProduct(id) {
 
 function markUpModal(product) {
   return `
-    <div class="modal-content">
-      <div class="image-modal">
-        <img src="${product.image}" alt="">
-      </div>
 
-      <div class="modal-title">
-        <h3>${product.name} </h3>
-        <p>" ${product.description} "</p>
-      </div>
-      
-      <div class="modal-about">
-
-        <div>
-          <p><img src="images/icons/star.png" alt="">${product.rating}</p>
-          <p><img src="images/icons/box.png" alt="">${product.stock}</p>
-          <p><img src="images/icons/sale.png" alt="">-${product.discount}%</p>
-        </div>
-      </div>
-
-      <div class="modal-carting">
-        <input type="number" value="1" min="1" max="${product.stock}">
-        <p>R$${product.price}</p>
-        <button type="button">Add to cart</button>
-      </div>
-    </div>
-
+  <div class="modal-content">
+  <div class="image-modal">
+  <img src="${product.image}" alt="">
+  </div>
+  
+  <div class="modal-title">
+  <h3>${product.name} </h3>
+  <p>" ${product.description} "</p>
+  </div>
+  
+  <div class="modal-about">
+  
+  <div>
+  <p><img src="images/icons/star.png" alt="">${product.rating}</p>
+  <p><img src="images/icons/box.png" alt="">${product.stock}</p>
+  <p><img src="images/icons/sale.png" alt="">-${product.discount}%</p>
+  </div>
+  </div>
+  
+  <div class="modal-carting">
+  <input type="number" value="1" min="1" max="${product.stock}">
+  <p>R$${product.price}</p>
+  <button type="button">Add to cart</button>
+  </div>
+  </div>
+  
   `;
 }
 

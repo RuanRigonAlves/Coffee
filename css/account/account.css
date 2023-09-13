@@ -1,0 +1,18 @@
+.account-section {
+  background-color: #c5c5c5;
+  height: 90vh;
+}
+
+.account-info {
+  background-color: #c5c5c5;
+}
+
+.logout-button {
+  background-color: rgb(133, 13, 13);
+  padding: 20px;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
+}

@@ -15,7 +15,7 @@
         </ul>
         <ul class="header-selection">
           <li class="header-products">Products</li>
-          <li class="header-categories">Categories</li>
+          <li class="header-cart">Cart</li>
         </ul>
         <ul class="header-account-ul">
           <?php 
@@ -31,18 +31,33 @@
     </header>
 
     <section class="main-section">
-      
-        <!-- <div class="form">
-          <form action="php/includes/signup.inc.php" method="post">
-            <h1 class="login-title">Signup</h1>
-            <input class="login-input" type="text" name="username" placeholder="Username">
-            <input class="login-input" type="email" name="email" placeholder="E-Mail">
-            <input class="login-input" type="password" name="password" placeholder="Password">
-            <input class="login-button"type="submit" name="submit" value="Register">
-            <p class="link"><a href="">Click to Login</a></p>
-          </form>
-        </div>
-         -->
+    
+      <div class="cart-container">
+        <ul class="cart-products">
+          <li>
+            <!-- <div class="cart-product-holder"> -->
+
+              <div class="cart-image">
+                <img src="./images/product-images/ginger ale (1).jpg" alt="">
+              </div>
+              <input type="number" value="1" min="1" max="50">
+              <p>R$2.5</p>
+            <!-- </div> -->
+          </li>
+          <li>
+            <!-- <div class="cart-product-holder"> -->
+
+              <div class="cart-image">
+                <img src="./images/product-images/ginger ale (1).jpg" alt="">
+              </div>
+              <input type="number" value="1" min="1" max="50">
+              <p>R$2.5</p>
+            <!-- </div> -->
+          </li>
+
+        </ul>
+      </div>
+
     </section>
   </body>
 </html>
