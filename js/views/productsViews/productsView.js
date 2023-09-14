@@ -42,6 +42,7 @@ export const displayProducts = function (products) {
         </ul>
       </div>
       <div class="product-modal" style=""></div>
+      <div class="modal-overlay"></div>
   `
   );
 };

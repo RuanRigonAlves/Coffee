@@ -8,17 +8,17 @@ import * as selection from "./views/productsViews/selectionView.js";
 import * as sideBar from "./views/productsViews/productsSideBar.js";
 import * as signupView from "./views/accountViews/signupView.js";
 import * as accountView from "./views/accountViews/accountView.js";
+import * as cartView from "./views/cartViews/cartView.js";
 
 const mainSection = document.querySelector(".main-section");
 const headerSection = document.querySelector(".header-container");
 
 function headerListener() {
-  // window.addEventListener(
-  //   "DOMContentLoaded",
-  //   startView.displayStartPage(mainSection)
-  //   // accountView.displayAccount(mainSection)
-  // );
-
+  window.addEventListener(
+    "DOMContentLoaded",
+    startView.displayStartPage(mainSection)
+    // accountView.displayAccount(mainSection)
+  );
   headerSection.addEventListener("click", function (e) {
     if (e.target.nodeName !== "LI") return;
 
@@ -33,6 +33,9 @@ function headerListener() {
 
       productView.displayMenu(model.myCoffee.Coffee.productsCategories);
       productView.displayProducts(model.myCoffee.Coffee.products);
+
+      selection.checkIsLoggedIn();
+      productListner();
     }
 
     if (e.target.classList[0] === "header-signup") {
@@ -51,6 +54,8 @@ function headerListener() {
 
     if (e.target.classList[0] === "header-cart") {
       globalFunctions.clearHTML(mainSection);
+
+      cartView.renderCart(mainSection);
     }
   });
 }
@@ -58,7 +63,6 @@ function headerListener() {
 function productListner() {
   mainSection.addEventListener("click", function (e) {
     const productMain = e.target.closest(".product-main");
-
     if (productMain && productMain.classList.contains("product-main")) {
       const modalContent = document.querySelector(".modal-content");
 
@@ -111,7 +115,6 @@ function init() {
   initModel();
   initGlobalFunction();
   headerListener();
-  productListner();
   sideMenuListner();
 }
 

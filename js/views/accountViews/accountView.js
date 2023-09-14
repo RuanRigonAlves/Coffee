@@ -8,7 +8,7 @@ export const displayAccount = function (section) {
   section.insertAdjacentHTML(
     "afterbegin",
     `
-    <section class="account-section">
+    <section class="account-section animated-element-opacity">
       <div class="account-info">
         <h1>account info</h1>
         <a class="logout-button" href="./php/includes/logout.inc.php">Logout</a>
