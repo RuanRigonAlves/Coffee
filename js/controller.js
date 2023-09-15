@@ -55,7 +55,9 @@ function headerListener() {
     if (e.target.classList[0] === "header-cart") {
       globalFunctions.clearHTML(mainSection);
 
-      cartView.renderCart(mainSection);
+      cartView.renderCartPage(mainSection);
+
+      cartView.renderCartProducts();
     }
   });
 }

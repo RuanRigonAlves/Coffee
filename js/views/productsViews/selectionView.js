@@ -5,6 +5,7 @@ import * as globalFunctions from "../../helpers/globalFunctions.js";
 export default function selectProduct() {}
 
 export let isLoggedIn = false;
+export let sessionUsername = null;
 
 export function selectedProduct(clickedProduct) {
   const productID = extractClickedID(clickedProduct);
@@ -91,8 +92,7 @@ function markUpModalLoggedIn(product) {
   <div>
   <p><img src="images/icons/star.png" alt="">${product.rating}</p>
   <p><img src="images/icons/box.png" alt="">${product.stock}</p>
-  <p><img src="images/icons/sale.png" alt="">-${product.discount}%</p>
-  <p>Price: R$<span id="productPrice">${product.price}</span></p>
+  <p><img src="images/icons/money.png"><span id="productPrice">${product.price}</span></p>
 
   </div>
   </div>
@@ -100,7 +100,7 @@ function markUpModalLoggedIn(product) {
   <div class="modal-carting">
   
   <input type="number" value="1" min="1" max="${product.stock}" id="quantity">
-  <p id="totalPrice">Total Price: R$${product.price}</p>
+  <p id="totalPrice">Total R$${product.price}</p>
   <button id="addToCart">Add to MyCart</button>
   </div>
   </div>
@@ -125,8 +125,7 @@ function markUpModalLoggedOut(product) {
   <div>
   <p><img src="images/icons/star.png" alt="">${product.rating}</p>
   <p><img src="images/icons/box.png" alt="">${product.stock}</p>
-  <p><img src="images/icons/sale.png" alt="">-${product.discount}%</p>
-  <p>Price: R$<span id="productPrice">${product.price}</span></p>
+  <p><img src="images/icons/money.png"><span id="productPrice">${product.price}</span></p>
 
   </div>
   </div>
@@ -197,32 +196,37 @@ export function productCalculator(product) {
     const cartItem = {
       id: product.id,
       name: product.name,
-      price: product.price,
+      price: +product.price,
       quantity: quantity,
-      total: total,
+      maxQuantity: product.stock,
+      total: +total,
+      image: product.image,
     };
-    let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cartItem.quantity > cartItem.maxQuantity) {
+      cartItem.quantity = cartItem.maxQuantity;
+    }
+    let cartItems = JSON.parse(localStorage.getItem(sessionUsername)) || [];
 
     cartItems.push(cartItem);
 
-    localStorage.setItem("cart", JSON.stringify(cartItems));
+    localStorage.setItem(sessionUsername, JSON.stringify(cartItems));
   }
 }
 
 export function checkIsLoggedIn() {
-  fetch("php/includes/isLoggedIn.inc.php") // Replace with the actual PHP script URL
-    .then((response) => response.text())
+  fetch("php/includes/isLoggedIn.inc.php")
+    .then((response) => response.json())
     .then((data) => {
-      // Handle the JSON response here
-      // document.getElementById("result").textContent = JSON.stringify(data);
-      if (data === "true") {
+      if (data.isLoggedIn === true) {
         isLoggedIn = true;
+        sessionUsername = data.username;
       } else {
         isLoggedIn = false;
+        sessionUsername = null;
       }
     })
     .catch((error) => {
-      // Handle errors here
       console.log(error);
     });
 }
