@@ -15,6 +15,7 @@ h1.login-title {
   text-align: center;
 }
 .login-input {
+  cursor: pointer;
   font-size: 15px;
   border: 1px solid #ccc;
   padding: 10px;
@@ -38,10 +39,15 @@ h1.login-title {
   cursor: pointer;
 }
 .link {
+  display: block;
+  text-align: center;
+  margin-top: 5px;
   color: #666;
   font-size: 15px;
   text-align: center;
   margin-bottom: 0px;
+  cursor: pointer;
+  text-decoration: underline;
 }
 .link a {
   color: #666;

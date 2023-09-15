@@ -100,7 +100,7 @@ function markUpModalLoggedIn(product) {
   <div class="modal-carting">
   
   <input type="number" value="1" min="1" max="${product.stock}" id="quantity">
-  <p id="totalPrice">Total R$${product.price}</p>
+  <p>Total R$<span id="totalPrice">${product.price}</span></p>
   <button id="addToCart">Add to MyCart</button>
   </div>
   </div>
@@ -185,6 +185,8 @@ export function productCalculator(product) {
       const total = quantity * productPrice;
       totalPriceSpan.textContent = total.toFixed(2);
     } else {
+      totalPriceSpan.innerHTML = "";
+      console.log();
       totalPriceSpan.textContent = "Invalid quantity";
     }
   }

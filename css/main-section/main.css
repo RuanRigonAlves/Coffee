@@ -30,7 +30,8 @@
   display: none;
   /* background-color: #555555; */
   /* background-color: #fff; */
-  background-image: linear-gradient(180deg, #0e678f, #e4a16d);
+  /* background-image: linear-gradient(180deg, #0e678f, #e4a16d); */
+  background: #334357;
 
   z-index: 20;
   position: fixed;
@@ -41,6 +42,7 @@
   left: 59%;
   transform: translate(-50%, -50%);
   border-radius: 10px;
+  border: 1px solid #fff;
 }
 
 .modal-content > div {
@@ -64,6 +66,8 @@
   object-fit: cover;
   position: absolute;
   border-radius: 10px;
+
+  border: 1px solid #0e678f;
 }
 
 .modal-title h3 {
@@ -95,10 +99,11 @@
   display: flex;
   padding: 4px 4px;
   width: 85px;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   border-radius: 20px;
-  background-color: #0e678f;
+  border: 1px solid #0e678f;
+  /* background-color: #0e678f; */
 }
 
 .modal-about img {
@@ -131,8 +136,10 @@
   /* height: 40px; */
   padding: 8px 4px;
   border-radius: 20px;
-  background-color: #0e678f;
+  border: 1px solid #0e678f;
+  background-color: #334357;
   color: #fff;
+  cursor: pointer;
 }
 
 .modal-carting input {
